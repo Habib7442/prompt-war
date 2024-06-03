@@ -58,6 +58,7 @@ const Posts = () => {
                 promptImage={{
                   ...item,
                   likes: item.likes?.length || 0,
+                  likesCount: item.likes?.length || 0,
                 }}
               />
             ))}

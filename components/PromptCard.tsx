@@ -28,6 +28,7 @@ type PromptImage = {
   $id: string;
   likes: number;
   isBookmarked: boolean;
+  likesCount: number
 };
 
 type GlobalState = {
@@ -49,6 +50,7 @@ const PromptCard = ({
     $id,
     likes,
     isBookmarked,
+    likesCount
   },
 }: {
   promptImage: PromptImage;

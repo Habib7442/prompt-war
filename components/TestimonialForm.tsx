@@ -35,19 +35,23 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ userId }) => {
     setIsSubmitting(true);
 
     try {
-      await createTestimonial(
-        userId,
-        review,
-        rating,
-        imageFile,
-        username,
-        avatar
-      );
-      toast("Review submitted successfully");
-      setReview("");
-      setRating(0);
-      setImageFile(null);
-      setError(null);
+      if (username && avatar) {
+        await createTestimonial(
+          userId,
+          review,
+          rating,
+          imageFile,
+          username,
+          avatar
+        );
+        toast("Review submitted successfully");
+        setReview("");
+        setRating(0);
+        setImageFile(null);
+        setError(null);
+      } else {
+        toast("There is no active user");
+      }
     } catch (error: any) {
       setError(error.message);
     } finally {

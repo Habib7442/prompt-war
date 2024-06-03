@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/provider/redux/store";
 import { toast } from "sonner";
 
-
 type FormState = {
   title: string;
   thumbnail: File | null;
@@ -26,7 +25,6 @@ const SubmitPromptForm = () => {
   });
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
-
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -59,9 +57,13 @@ const SubmitPromptForm = () => {
     setUploading(true);
 
     try {
-      await createImage({ ...form, userId: user.$id });
-      toast("Post uploaded successfully");
-      router.push("/posts");
+      if (user) {
+        await createImage({ ...form, userId: user.$id });
+        toast("Post uploaded successfully");
+        router.push("/posts");
+      } else {
+        toast("There is no active user");
+      }
     } catch (error) {
       if (typeof error === "object" && error !== null && "message" in error) {
         alert(error.message);

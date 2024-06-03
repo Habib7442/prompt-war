@@ -23,7 +23,7 @@ const Trending = ({ posts }: any) => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        {posts.map((post, index) => (
+        {posts.map((post: any, index: any) => (
           <SwiperSlide key={index}>
             <Image
               width={500}
