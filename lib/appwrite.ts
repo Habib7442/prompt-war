@@ -201,7 +201,7 @@ export const getLatestPosts = async () => {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.promptCollectionId,
-      [Query.orderDesc("$createdAt", Query.limit(7))]
+      [Query.orderDesc("$createdAt"), Query.limit(7)]
     );
     return posts.documents;
   } catch (error: any) {
@@ -483,7 +483,7 @@ export const createTestimonial = async (
   rating: number,
   imageFile: File | null,
   username: string,
-  avatar: string,
+  avatar: string
 ) => {
   try {
     let imageurl = null;

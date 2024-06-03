@@ -5,7 +5,7 @@ import SearchInput from "@/components/SearchInput";
 import renderSkeletons from "@/components/Skeleton";
 import PaginationComponent from "@/components/Pagination";
 
-import { getAllPosts, getLatestPosts } from "@/lib/appwrite";
+import { getAllPosts } from "@/lib/appwrite";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/provider/redux/store";

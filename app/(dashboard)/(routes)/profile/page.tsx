@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { InfoIcon, LoaderCircle, MoveRight } from "lucide-react";
 import { toast } from "sonner";
+import exportObject from "@/constants/images";
 
 type Post = {
   $id: string;
@@ -148,7 +149,7 @@ const Profile = () => {
 
       <div className="w-24 h-24 border border-teal-300 rounded-md overflow-hidden">
         <Image
-          src={user?.avatar}
+          src={user?.avatar || exportObject.images.homeImage1}
           className="w-full h-full object-cover"
           alt="avatar"
           width={96}
