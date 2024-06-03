@@ -28,7 +28,7 @@ const VerifyEmailPage = () => {
     if (userId && secret) {
       handleVerifyEmail();
     }
-  }, [userId, secret]);
+  }, [userId, secret, router]);
 
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center bg-gray-100 px-4">

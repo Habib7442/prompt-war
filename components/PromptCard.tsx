@@ -133,7 +133,7 @@ const PromptCard = ({
     };
 
     fetchLikeStatus();
-  }, [user]);
+  }, [user, $id]);
 
   useEffect(() => {
     const fetchBookmarkStatus = async () => {

@@ -39,7 +39,7 @@ const Posts = () => {
     if (!isLogged) {
       router.push("/sign-in");
     }
-  }, []);
+  }, [isLogged, router]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

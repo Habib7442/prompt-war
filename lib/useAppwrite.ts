@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const useAppwrite = (fn: any) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
 
     try {
@@ -20,10 +20,10 @@ const useAppwrite = (fn: any) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [fn]);
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const refetch = () => fetchData();
 

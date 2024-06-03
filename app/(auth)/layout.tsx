@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = ({ children }: any) => {
     return (
         <div className='flex flex-col p-5 bg-black items-center justify-center h-full'>
             {children}
