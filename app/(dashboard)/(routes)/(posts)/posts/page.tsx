@@ -29,7 +29,6 @@ const Posts = () => {
 
   const { data: posts, isLoading } = useAppwrite(getAllPosts);
 
-
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
 

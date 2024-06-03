@@ -12,10 +12,7 @@ import {
   sendVerificationEmail,
   signOut,
 } from "@/lib/appwrite";
-import {
-  setIsLogged,
-  setUser,
-} from "@/provider/redux/globalSlice";
+import { setIsLogged, setUser } from "@/provider/redux/globalSlice";
 import { useAppDispatch, useAppSelector } from "@/provider/redux/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -48,7 +45,9 @@ const Profile = () => {
   const [isVerification, setIsVerification] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-  const { data: posts, isLoading } = useAppwrite(() => getUserPosts(user.$id));
+  const { data: posts, isLoading } = useAppwrite(() =>
+    user ? getUserPosts(user.$id) : Promise.resolve([])
+  );
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -121,11 +120,11 @@ const Profile = () => {
         >
           Logout
           <Image
-            width={24}
-            height={24}
-            src={icons.logout}
-            className="w-6 h-6 object-contain"
-            alt="logout-icon"
+            src={user?.avatar || "default-avatar.png"}
+            className="w-full h-full object-cover"
+            alt="avatar"
+            width={96}
+            height={96}
           />
         </Button>
         {!isEmailVerified ? (

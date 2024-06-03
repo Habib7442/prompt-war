@@ -15,9 +15,6 @@ const ResetPasswordPage = () => {
   const userId = searchParams.get("userId");
   const secret = searchParams.get("secret");
 
-  console.log(userId, "userId");
-  console.log(secret, "secret");
-
   const handleResetPassword = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
