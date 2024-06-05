@@ -16,23 +16,23 @@ const SinglePost = ({ params }: any) => {
     }
   }, [dispatch, postId]);
   return (
-    <section className="text-gray-600 body-font overflow-hidden bg-slate-900">
+    <main className="text-gray-600 w-full h-full body-font overflow-hidden bg-slate-950">
       <div className="container px-5 py-24 mx-auto">
         {singlePost && (
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <Image
-              width={100}
-              height={100}
+              width={200}
+              height={200}
               alt="ecommerce"
-              className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-              src={singlePost.imageUrl}
+              className="lg:w-1/2 w-full lg:h-full h-64 object-cover object-center rounded"
+              src={singlePost?.thumbnail}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 PROMPT BY
               </h2>
               <h1 className="text-gray-400 text-3xl title-font font-medium mb-1">
-                {singlePost.name}
+                {singlePost?.creator?.username}
               </h1>
               <div className="flex mb-4">
                 <span className="flex items-center">
@@ -91,7 +91,7 @@ const SinglePost = ({ params }: any) => {
                   >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                   </svg>
-                  <span className="text-gray-600 ml-3">4 Reviews</span>
+                  <span className="text-gray-600 ml-3">{singlePost?.likesCount} likes</span>
                 </span>
                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                   <a className="text-gray-500">
@@ -139,21 +139,7 @@ const SinglePost = ({ params }: any) => {
           </div>
         )}
       </div>
-    </section>
-    // <div>
-    //   {singlePost && (
-    //     <div>
-    //       <Image
-    //         src={singlePost.imageUrl}
-    //         width={100}
-    //         height={100}
-    //         alt={singlePost.prompt}
-    //       />
-    //       <h2>{singlePost.prompt}</h2>
-    //       <p>Likes: {singlePost.likes}</p>
-    //     </div>
-    //   )}
-    // </div>
+    </main>
   );
 };
 

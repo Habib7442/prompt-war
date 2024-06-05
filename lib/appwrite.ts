@@ -196,6 +196,23 @@ export const getAllPosts = async () => {
   }
 };
 
+export const getSinglePost = async (postId: string) => {
+  try {
+    const post = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.promptCollectionId,
+      postId
+    );
+    return post;
+  } catch (error: any) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw error;
+    }
+  }
+};
+
 export const getLatestPosts = async () => {
   try {
     const posts = await databases.listDocuments(

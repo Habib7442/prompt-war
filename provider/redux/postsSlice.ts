@@ -1,12 +1,18 @@
+import { getSinglePost } from '@/lib/appwrite';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface Post {
   $id: string;
-  imageUrl: string;
   likes: number;
   prompt: string;
   name: string;
+  thumbnail:string;
+  creator: {
+    username: string;
+  };
+  username: string;
+  likesCount:number;
 }
 
 interface PostsState {
@@ -32,12 +38,22 @@ export const fetchPosts = createAsyncThunk(
 );
 
 export const fetchSinglePost = createAsyncThunk(
-  'post/fetchSinglePost',
+  'posts/fetchSinglePost',
   async (postId: string) => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/getSingleDocument?id=${postId}`
-    );
-    return response.data;
+    const response = await getSinglePost(postId);
+    const post: Post = {
+      $id: response.$id,
+      likes: response.likes.length,
+      prompt: response.prompt,
+      name: response.name,
+      thumbnail: response.thumbnail,
+      creator: {
+        username: response.creator.username,
+      },
+      username: response.username,
+      likesCount: response.likesCount,
+    };
+    return post;
   }
 );
 

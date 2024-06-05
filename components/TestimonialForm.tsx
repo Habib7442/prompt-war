@@ -60,7 +60,7 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ userId }) => {
   };
 
   return (
-    <div className="w-full h-screen bg-slate-900 flex flex-col lg:flex-row">
+    <div className="w-full h-screen bg-slate-950 flex flex-col lg:flex-row">
       <div className="lg:w-1/2 w-full flex justify-center items-center p-4">
         <Image
           src={exportObject.images.feedback}
