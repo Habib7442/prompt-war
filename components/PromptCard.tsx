@@ -7,7 +7,6 @@ import {
   setLikedPosts,
   setBookmarkedPosts,
 } from "@/provider/redux/globalSlice";
-
 import Image from "next/image";
 import icons from "@/constants/icons";
 import DialogComponent from "./Dialog";
@@ -19,6 +18,25 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { toast } from "sonner";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  InstagramIcon,
+} from "next-share";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "./ui/dialog";
+import { Button } from "./ui/button";
 
 type PromptImage = {
   title: string;
@@ -28,7 +46,7 @@ type PromptImage = {
   $id: string;
   likes: number;
   isBookmarked: boolean;
-  likesCount: number
+  likesCount: number;
 };
 
 type GlobalState = {
@@ -50,7 +68,7 @@ const PromptCard = ({
     $id,
     likes,
     isBookmarked,
-    likesCount
+    likesCount,
   },
 }: {
   promptImage: PromptImage;
@@ -150,6 +168,17 @@ const PromptCard = ({
     fetchBookmarkStatus();
   }, [user, isBookmarked]);
 
+  const postUrl = `${window.location.origin}/post/${$id}`;
+
+  const handleShareInstagram = async () => {
+    try {
+      await navigator.clipboard.writeText(postUrl);
+      toast("Link copied to clipboard. Open Instagram and paste the link.");
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+  };
+
   return (
     <div className="flex flex-col px-4 mb-14">
       <div className="flex gap-3 items-start">
@@ -204,9 +233,42 @@ const PromptCard = ({
             alt="like"
           />
         </button>
-        <button>
-          <Image src={icons.share} className="w-8 h-8 opacity-80" alt="share" />
-        </button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <button>
+              <Image
+                src={icons.share}
+                className="w-8 h-8 opacity-80"
+                alt="share"
+              />
+            </button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogTitle>Share this post</DialogTitle>
+            <DialogDescription>
+              Share this post using the following platforms:
+            </DialogDescription>
+            <div className="flex gap-4 mt-4">
+              <FacebookShareButton url={postUrl} quote={title}>
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+              <TwitterShareButton url={postUrl} title={title}>
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <LinkedinShareButton url={postUrl}>
+                <LinkedinIcon size={32} round />
+              </LinkedinShareButton>
+              <Button variant="ghost" onClick={handleShareInstagram}>
+                <InstagramIcon size={32} round />
+              </Button>
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <button className="btn">Close</button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         <button onClick={handleBookmark} className="ml-auto">
           <Image
             src={isBookmarkedState ? icons.bookmarkred : icons.bookmark}

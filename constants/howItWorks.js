@@ -5,11 +5,15 @@ const howItWorks = [
   },
   {
     id: 2,
-    desc: "Participate in our weekly industry-relevant challenges.",
+    desc: "Participate in our weekly challenges.",
   },
   {
     id: 3,
-    desc: "Get your work noticed by top companies and climb the leaderboard!",
+    desc: "Share your post in social media.",
+  },
+  {
+    id: 4,
+    desc: "Get your work noticed by top companies and climb the leaderboard!.",
   },
 ];
 
