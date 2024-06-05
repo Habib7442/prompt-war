@@ -4,7 +4,7 @@ import ReduxWrapper from "./ReduxWrapper";
 
 export const metadata: Metadata = {
   title: "Promptwar",
-  description: "Prompt selling and buying made easy.",
+  description: "Where Words Clash and Ideas Spark",
 };
 
 export default function RootLayout({

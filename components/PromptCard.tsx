@@ -79,6 +79,7 @@ const PromptCard = ({
   const { user, bookmarkedPosts, likedPosts } = useAppSelector(
     (state: GlobalState) => state.global
   );
+  const [directImageUrl, setDirectImageUrl] = useState("");
 
   const pathname = usePathname();
   const router = useRouter();
@@ -175,20 +176,38 @@ const PromptCard = ({
       const response = await fetch(thumbnail);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
-  
-      const link = document.createElement('a');
+
+      const link = document.createElement("a");
       link.href = url;
       link.download = `${title}.jpg`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-  
-      toast("Image downloaded. Open Instagram, create a new post, and select this image.");
+
+      toast(
+        "Image downloaded. Open Instagram, create a new post, and select this image."
+      );
     } catch (err) {
       console.error("Failed to download image: ", err);
       toast("Error downloading image. Please try again.");
     }
   };
+
+  const getDirectImageUrl = async () => {
+    try {
+      const response = await fetch(thumbnail);
+      const blob = await response.blob();
+      return window.URL.createObjectURL(blob);
+    } catch (err) {
+      console.error("Failed to get direct image URL: ", err);
+      toast("Error preparing image for sharing. Using post URL instead.");
+      return `${window.location.origin}/post/${$id}`;
+    }
+  };
+
+  useEffect(() => {
+    getDirectImageUrl().then((url) => setDirectImageUrl(url));
+  }, [thumbnail]);
 
   return (
     <div className="flex flex-col px-4 mb-14">
@@ -260,13 +279,27 @@ const PromptCard = ({
               Share this post using the following platforms:
             </DialogDescription>
             <div className="flex gap-4 mt-4">
-              <FacebookShareButton url={postUrl} quote={title}>
+              <FacebookShareButton
+                url={directImageUrl}
+                quote={`${title} - ${prompt.slice(0, 100)}...`}
+                hashtag="#AIGeneratedArt"
+              >
                 <FacebookIcon size={32} round />
               </FacebookShareButton>
-              <TwitterShareButton url={postUrl} title={title}>
+              <TwitterShareButton
+                url={directImageUrl}
+                title={`Check out this AI-generated art: ${title}`}
+                via="YourAppName"
+                hashtags={["AIArt", "Creativity"]}
+              >
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
-              <LinkedinShareButton url={postUrl}>
+              <LinkedinShareButton
+                url={directImageUrl}
+                title={title}
+                summary={`AI-generated art prompt: ${prompt.slice(0, 200)}...`}
+                source="PromptWar"
+              >
                 <LinkedinIcon size={32} round />
               </LinkedinShareButton>
               <Button variant="ghost" onClick={handleShareInstagram}>
