@@ -23,7 +23,7 @@ const useAppwrite = (fn: any) => {
   }, [fn]);
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   const refetch = () => fetchData();
 

@@ -541,7 +541,10 @@ export const getTestimonials = async () => {
 
 export const sendPasswordResetEmail = async (email: any) => {
   try {
-    await account.createRecovery(email, "http://localhost:3000/reset-password");
+    await account.createRecovery(
+      email,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password`
+    );
     console.log("Password reset email sent");
   } catch (error: any) {
     if (error instanceof Error) {
@@ -574,7 +577,7 @@ export const resetPassword = async (
 
 export const sendVerificationEmail = async () => {
   try {
-    await account.createVerification("http://localhost:3000/verify-email");
+    await account.createVerification(`${process.env.NEXT_PUBLIC_BASE_URL}/verify-email`);
     console.log("Verification email sent");
   } catch (error: any) {
     if (error instanceof Error) {
