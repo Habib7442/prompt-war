@@ -172,10 +172,21 @@ const PromptCard = ({
 
   const handleShareInstagram = async () => {
     try {
-      await navigator.clipboard.writeText(postUrl);
-      toast("Link copied to clipboard. Open Instagram and paste the link.");
+      const response = await fetch(thumbnail);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+  
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${title}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+  
+      toast("Image downloaded. Open Instagram, create a new post, and select this image.");
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      console.error("Failed to download image: ", err);
+      toast("Error downloading image. Please try again.");
     }
   };
 
