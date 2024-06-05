@@ -50,7 +50,7 @@ const Leaderboard = () => {
         <TableBody>
           {isLoading ? (
             <TableRow className="w-full h-full flex justify-center items-center">
-              <LoaderIcon className="w-10 h-10 text-white mx-auto" />
+              <LoaderIcon className="w-10 h-10 text-white mx-auto animate-spin" />
             </TableRow>
           ) : (
             sortedPosts.map((item, index) => (

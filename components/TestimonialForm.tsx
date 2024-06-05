@@ -73,7 +73,7 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({ userId }) => {
         className="lg:w-1/2 w-full h-full flex flex-col items-center justify-center p-6 text-white bg-slate-900"
       >
         <h3 className="lg:text-3xl text-2xl font-semibold mb-6">
-          Submit Your Testimonial
+          Submit Your Feedback
         </h3>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="mb-6 w-full">
