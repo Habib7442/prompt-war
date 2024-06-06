@@ -24,7 +24,7 @@ const TestimonialList: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center py-8 px-4">
-      <h3 className="text-4xl font-bold mb-8 text-gray-400">Testimonials</h3>
+      <h3 className="text-4xl font-bold mb-8 text-gray-400">Feedbacks</h3>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {testimonials.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl">
