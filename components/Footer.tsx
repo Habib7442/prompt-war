@@ -6,7 +6,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="text-gray-600 body-font">
-      <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <div className="container px-5 mx-auto flex items-center sm:flex-row flex-col">
         <Link
           href="/"
           className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
