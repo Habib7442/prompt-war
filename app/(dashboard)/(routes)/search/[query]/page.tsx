@@ -29,20 +29,26 @@ const Search = ({ params }: any) => {
           <SearchInput initialQuery={query} />
         </div>
       </div>
-      <div className="w-full h-full bg-black text-white grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 p-4 mt-4">
-        {isLoading
-          ? renderSkeletons()
-          : posts.map((item: Post) => (
-              <PromptCard
-                key={item.$id}
-                promptImage={{
-                  ...item,
-                  likes: item.likes?.length || 0,
-                  likesCount: item.likes?.length || 0,
-                }}
-              />
-            ))}
-      </div>
+      {posts.length > 0 ? (
+        <div className="w-full h-full bg-black text-white grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 p-4 mt-4">
+          {isLoading
+            ? renderSkeletons()
+            : posts.map((item: Post) => (
+                <PromptCard
+                  key={item.$id}
+                  promptImage={{
+                    ...item,
+                    likes: item.likes?.length || 0,
+                    likesCount: item.likes?.length || 0,
+                  }}
+                />
+              ))}
+        </div>
+      ) : (
+        <div className="w-full h-screen bg-black flex justify-center items-center">
+          <h1 className="text-2xl font-bold text-gray-400">No posts found</h1>
+        </div>
+      )}
     </div>
   );
 };

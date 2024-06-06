@@ -32,7 +32,8 @@ const Hero = () => {
           filter: "brightness(50%)", // This line dims the background image
         }}
       ></div>
-      <div className="absolute inset-0 bg-black opacity-50"></div> {/* Overlay div */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>{" "}
+      {/* Overlay div */}
       <div className="flex flex-col relative z-10">
         <h1 className="text-center text-teal-600 font-mono font-bold lg:text-[80px] md:text-[70px] text-[40px]">
           Prompt⚔️War
@@ -42,15 +43,17 @@ const Hero = () => {
         </h4>
       </div>
       <div className="mt-4 flex gap-4 relative z-10">
-        <Button className="gap-2">
-          Follow us on{" "}
-          <Images
-            src={exportObject.images.Instagram}
-            width={20}
-            height={20}
-            alt="logo"
-          />{" "}
-        </Button>
+        <a href="https://www.instagram.com/promptwar.dev?utm_source=qr&igsh=MXZvcGF5a2Y2M2lpag%3D%3D" target="blank">
+          <Button className="gap-2">
+            Follow us on{" "}
+            <Images
+              src={exportObject.images.Instagram}
+              width={20}
+              height={20}
+              alt="logo"
+            />{" "}
+          </Button>
+        </a>
         <Link href={isLogged ? "/posts" : "/sign-in"}>
           <Button className="gap-2">
             {isLogged ? "Explore" : "Get Started"} <ArrowBigRight />{" "}

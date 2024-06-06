@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { getAllPosts } from "@/lib/appwrite";
 import useAppwrite from "@/lib/useAppwrite";
 import React, { useEffect, useState } from "react";
@@ -49,8 +49,10 @@ const Leaderboard = () => {
         </TableHeader>
         <TableBody>
           {isLoading ? (
-            <TableRow className="w-full h-full flex justify-center items-center">
-              <LoaderIcon className="w-10 h-10 text-white mx-auto animate-spin" />
+            <TableRow className="w-full h-screen flex justify-center items-center">
+              <TableCell colSpan={4} className="text-center">
+                <LoaderIcon className="w-10 h-10 text-white mx-auto animate-spin" />
+              </TableCell>
             </TableRow>
           ) : (
             sortedPosts.map((item, index) => (
