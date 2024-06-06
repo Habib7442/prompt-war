@@ -9,15 +9,15 @@ const Footer = () => {
       <div className="container px-5 mx-auto flex items-center sm:flex-row flex-col">
         <Link
           href="/"
-          className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
+          className="lg:flex md:flex hidden title-font font-medium items-center md:justify-start justify-center text-gray-900"
         >
           <Image
             src={exportObject.images.logo}
             alt="logo"
-            className="w-36 h-36"
+            className="lg:w-36 lg:h-36 w-28 h-28"
           />
         </Link>
-        <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+        <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:mt-0 mt-4">
           © 2024 Promptwar — All rights reserved
         </p>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
